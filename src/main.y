@@ -7,10 +7,19 @@ int yylex(void);
 
 %}
 
-%token SOMA SUB DIV MULT 
+%token SOMA ABREPAR FECHAPAR DIV MULT NUM 
 
 %%
 
+calculadora:
+    ABREPAR expressao FECHAPAR
+    ;
+
+expressao:
+    NUM SOMA NUM {$$ = $1 + $$3;}
+    | NUM MULT NUM {$$ = $1 x $3;}
+    | NUM DIV NUM {$$ = $1/$3;}
+    ;
 
 %%
 
