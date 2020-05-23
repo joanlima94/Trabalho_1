@@ -16,7 +16,9 @@ calculadora:
     ;
 
 expressao:
-    NUM SOMA NUM {$$ = $1 + $$3;}
+    NUM SOMA NUM {
+                  printf("ADD %d, %d", $1, $2);
+                 }
     | NUM MULT NUM {$$ = $1 x $3;}
     | NUM DIV NUM {$$ = $1/$3;}
     ;
