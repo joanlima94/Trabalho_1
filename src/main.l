@@ -15,9 +15,9 @@ void yyerror(char *);
 
 [)] {return FECHAPAR;}
 
-[\] {return DIV;}
+[/] {return DIV;}
 
-[x] {return MULTI;}
+[x] {return MULT;}
 
 [0-9]+ {return NUM;}
 
