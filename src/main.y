@@ -1,7 +1,9 @@
 
 %{
 #include <stdio.h>
-  #include <stdlib.h>
+#include <stdlib.h>
+#include "y.tab.h"
+
 void yyerror(char *c);
 int yylex(void);
 
@@ -31,7 +33,8 @@ void yyerror(char *s) {
 }
 
 int main() {
-  yyparse();
-    return 0;
+   yyparse();
+   printf("start:\n");
+   return 0;
 
 }
