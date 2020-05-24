@@ -11,13 +11,15 @@ void yyerror(char *);
 
 [+] {return SOMA;}
 
+[-] {return SUB;}
+
 [(] {return ABREPAR;}
 
 [)] {return FECHAPAR;}
 
 [/] {return DIV;}
 
-[x] {return MULT;}
+[*] {return MULT;}
 
 [0-9]+ {return NUM;}
 
