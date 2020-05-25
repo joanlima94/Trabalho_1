@@ -10,20 +10,25 @@ int yylex(void);
 %}
 
 %token SOMA SUB ABREPAR FECHAPAR DIV MULT NUM '\n' 
+%left DIV MULT SOMA SUB
 
 %%
 
 CALC:
-    CALC EXPR { }
-    |
-    ;
+   CALC EXPR { }
+   | PAR { }
+   ;
+
+PAR:
+   | ABREPAR EXPR FECHAPAR {printf("isso é um ()");}
+
 
 EXPR:  
-   NUM '\n' {printf("isso é um numero\n");}
-   |NUM SOMA NUM {printf("isso é uma soma\n");}
-   |NUM SUB NUM {printf("isso é uma sub\n");}
-   |NUM MULT NUM {printf("isso é uma mult\n");}
-   |NUM DIV NUM {printf("isso é uma div\n");}
+   NUM {printf("isso é um numero\n");}
+   |EXPR SOMA EXPR {printf("isso é uma soma\n");}
+   |EXPR SUB EXPR {printf("isso é uma sub\n");}
+   |EXPR MULT EXPR {printf("isso é uma mult\n");}
+   |EXPR DIV EXPR {printf("isso é uma div\n");}
    ;
 /*
 N:
