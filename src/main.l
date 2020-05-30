@@ -11,8 +11,6 @@ void yyerror(char *);
 
 [+] {return SOMA;}
 
-[-] {return SUB;}
-
 [(] {return ABREPAR;}
 
 [)] {return FECHAPAR;}
@@ -20,6 +18,8 @@ void yyerror(char *);
 [/] {return DIV;}
 
 [*] {return MULT;}
+
+[\^] {return EXPO;}
 
 [0-9]+ {return NUM;}
 

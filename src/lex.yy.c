@@ -363,8 +363,8 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[15] =
     {   0,
-        0,    0,   10,    8,    9,    3,    4,    6,    1,    2,
-        5,    7,    7,    0
+        0,    0,   10,    8,    9,    2,    3,    5,    1,    4,
+        7,    6,    7,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -373,12 +373,12 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    3,
-        4,    5,    6,    1,    7,    1,    8,    9,    9,    9,
-        9,    9,    9,    9,    9,    9,    9,    1,    1,    1,
+        4,    5,    6,    1,    1,    1,    7,    8,    8,    8,
+        8,    8,    8,    8,    8,    8,    8,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    9,    1,    1,    1,    1,    1,    1,
 
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -407,7 +407,7 @@ static const YY_CHAR yy_meta[10] =
 static const flex_int16_t yy_base[15] =
     {   0,
         0,    0,   12,   13,   13,   13,   13,   13,   13,   13,
-       13,    2,    1,   13
+        3,   13,    2,   13
     } ;
 
 static const flex_int16_t yy_def[15] =
@@ -426,7 +426,7 @@ static const flex_int16_t yy_nxt[23] =
 static const flex_int16_t yy_chk[23] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,   13,
-       12,    3,   14,   14,   14,   14,   14,   14,   14,   14,
+       11,    3,   14,   14,   14,   14,   14,   14,   14,   14,
        14,   14
     } ;
 
@@ -737,27 +737,27 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 14 "src/main.l"
-{return SUB;}
+{return ABREPAR;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 16 "src/main.l"
-{return ABREPAR;}
+{return FECHAPAR;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 18 "src/main.l"
-{return FECHAPAR;}
+{return DIV;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 20 "src/main.l"
-{return DIV;}
+{return MULT;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 22 "src/main.l"
-{return MULT;}
+{return EXPO;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
