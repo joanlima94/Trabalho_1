@@ -17,7 +17,6 @@ int yylex(void);
 CALC:
    CALC EXPR { }
    | PAR { }
-   | ABREPAR PAR FECHAPAR { }
    ;
 
 PAR:
@@ -29,6 +28,7 @@ EXPR:
    |EXPR MULT EXPR {printf("isso é uma mult\n");}
    |EXPR DIV EXPR {printf("isso é uma div\n");}
    |EXPR EXPO EXPR {printf("isso é uma expo\n");}
+   | PAR 
    ;
 /*
 N:
