@@ -6,37 +6,34 @@
 
 void yyerror(char *c);
 int yylex(void);
+unsigned char cont=0;
+unsigned char var=1;
 
 %}
 
-%token SOMA ABREPAR FECHAPAR DIV MULT NUM EXPO '\n'
-%left DIV MULT SOMA EXPO
+%token SOMA EOL NUM MULT DIV EXPO ABREPAR FECHAPAR
+%left SOMA MULT DIV EXPO ABREPAR FECHAPAR 
 
 %%
 
 CALC:
-   CALC EXPR { }
-   | PAR { }
+   CALC EXPR EOL {printf("Resultado : %d\n",$2);}
+   | PAR {$$ = $1;} 
    ;
 
 PAR:
-   | ABREPAR EXPR FECHAPAR {printf("isso é um ()\n");}
+   ABREPAR EXPR FECHAPAR {$$=$2;}
+   |
+   ;
 
 EXPR:
-   NUM {printf("isso é um numero\n");}
-   |EXPR SOMA EXPR {printf("isso é uma soma\n");}
-   |EXPR MULT EXPR {printf("isso é uma mult\n");}
-   |EXPR DIV EXPR {printf("isso é uma div\n");}
-   |EXPR EXPO EXPR {printf("isso é uma expo\n");}
-   | PAR 
+   NUM {$$=$1;}
+   |EXPR SOMA EXPR {$$ = $1 + $3;}
+   |EXPR MULT EXPR {$$ = $1*$3;}
+   |EXPR DIV EXPR {$$ = $1/$3;}
+   |PAR {$$=$1;}
    ;
-/*
-N:
-    NUM SOMA NUM { printf("\tADD %d, %d", $1, $2); }
-    | NUM MULT NUM {}
-    | NUM DIV NUM {}
-    ;
-*/
+ 
 %%
 
 

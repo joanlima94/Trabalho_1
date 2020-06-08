@@ -50,22 +50,24 @@ extern int yydebug;
   enum yytokentype
   {
     SOMA = 258,
-    ABREPAR = 259,
-    FECHAPAR = 260,
-    DIV = 261,
-    MULT = 262,
-    NUM = 263,
-    EXPO = 264
+    EOL = 259,
+    NUM = 260,
+    MULT = 261,
+    DIV = 262,
+    EXPO = 263,
+    ABREPAR = 264,
+    FECHAPAR = 265
   };
 #endif
 /* Tokens.  */
 #define SOMA 258
-#define ABREPAR 259
-#define FECHAPAR 260
-#define DIV 261
-#define MULT 262
-#define NUM 263
-#define EXPO 264
+#define EOL 259
+#define NUM 260
+#define MULT 261
+#define DIV 262
+#define EXPO 263
+#define ABREPAR 264
+#define FECHAPAR 265
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

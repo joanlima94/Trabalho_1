@@ -11,19 +11,24 @@ void yyerror(char *);
 
 [+] {return SOMA;}
 
+[/] {return DIV;}
+
 [(] {return ABREPAR;}
 
 [)] {return FECHAPAR;}
 
-[/] {return DIV;}
+[\^] {return EXPO;}
 
 [*] {return MULT;}
 
-[\^] {return EXPO;}
+[0-9]+ { yylval = atoi(yytext);
+         return NUM;}
 
-[0-9]+ {return NUM;}
+\n {return EOL;}
 
-. ;
+
+[ \t]+ ;
+
 
 %%
 
