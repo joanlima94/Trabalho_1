@@ -7,12 +7,12 @@
 void yyerror(char *c);
 int yylex(void);
 unsigned char cont=0;
-unsigned char var=1;
 
 %}
 
 %token SOMA EOL NUM MULT DIV EXPO ABREPAR FECHAPAR
-%left SOMA MULT DIV EXPO ABREPAR FECHAPAR 
+%left SOMA MULT DIV 
+%right EXPO ABREPAR FECHAPAR
 
 %%
 
@@ -31,6 +31,12 @@ EXPR:
    |EXPR SOMA EXPR {$$ = $1 + $3;}
    |EXPR MULT EXPR {$$ = $1*$3;}
    |EXPR DIV EXPR {$$ = $1/$3;}
+   |EXPR EXPO EXPR {if($3==0) $$=1;
+                    else
+                    {
+                       for(cont=1;cont<$3;cont++) $$=$$*$1;
+                    } 
+                   }
    |PAR {$$=$1;}
    ;
  

@@ -26,8 +26,8 @@ void yyerror(char *);
 
 \n {return EOL;}
 
+[\ \t]+ ; 
 
-[ \t]+ ;
 
 
 %%
