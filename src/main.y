@@ -12,13 +12,13 @@ unsigned char cont=0;
 
 %token SOMA EOL NUM MULT DIV EXPO ABREPAR FECHAPAR
 %left SOMA MULT DIV 
-%right EXPO ABREPAR FECHAPAR
+%right ABREPAR FECHAPAR EXPO
 
 %%
 
 CALC:
-   CALC EXPR EOL {printf("Resultado : %d\n",$2);}
-   | PAR {$$ = $1;} 
+   CALC EXPR EOL {printf("Resultado : %d\n",$2);} 
+   | PAR{$$=$1;}
    ;
 
 PAR:
@@ -37,7 +37,7 @@ EXPR:
                        for(cont=1;cont<$3;cont++) $$=$$*$1;
                     } 
                    }
-   |PAR {$$=$1;}
+   |PAR{$$=$1;}
    ;
  
 %%

@@ -1323,7 +1323,7 @@ yyreduce:
 
   case 3:
 #line 21 "src/main.y"
-         {yyval = yyvsp[0];}
+        {yyval=yyvsp[0];}
 #line 1328 "src/y.tab.c"
     break;
 
@@ -1370,7 +1370,7 @@ yyreduce:
 
   case 11:
 #line 40 "src/main.y"
-        {yyval=yyvsp[0];}
+       {yyval=yyvsp[0];}
 #line 1375 "src/y.tab.c"
     break;
 
