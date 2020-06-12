@@ -463,7 +463,7 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  7
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   26
+#define YYLAST   29
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  11
@@ -520,8 +520,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    20,    20,    21,    25,    26,    30,    31,    32,    33,
-      34,    40
+       0,    22,    22,    23,    27,    28,    32,    33,    34,    40,
+      41,    42
 };
 #endif
 
@@ -560,7 +560,7 @@ static const yytype_int16 yytoknum[] =
 static const yytype_int8 yypact[] =
 {
       -7,    -4,     6,    -8,    -8,    -8,    10,    -8,    18,    -4,
-      -4,    -4,    -4,    -8,    -8,    -5,    -5,    -5,    -5
+      -4,    -4,    -4,    -8,    -8,    21,    -5,    -5,    -8
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -568,8 +568,8 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       5,     5,     5,     3,     6,    11,     0,     1,     0,     5,
-       5,     5,     5,     4,     2,     7,     8,     9,    10
+       5,     5,     5,     3,     6,     7,     0,     1,     0,     5,
+       5,     5,     5,     4,     2,    11,     9,    10,     8
 };
 
   /* YYPGOTO[NTERM-NUM].  */
@@ -591,14 +591,14 @@ static const yytype_int8 yytable[] =
 {
        8,     4,     1,    12,     3,     1,     7,    15,    16,    17,
       18,     4,     0,     9,     0,     1,    10,    11,    12,     0,
-      13,     9,    14,     0,    10,    11,    12
+      13,     9,    14,     0,    10,    11,    12,    10,    11,    12
 };
 
 static const yytype_int8 yycheck[] =
 {
        2,     5,     9,     8,     0,     9,     0,     9,    10,    11,
       12,     5,    -1,     3,    -1,     9,     6,     7,     8,    -1,
-      10,     3,     4,    -1,     6,     7,     8
+      10,     3,     4,    -1,     6,     7,     8,     6,     7,     8
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -619,8 +619,8 @@ static const yytype_int8 yyr1[] =
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     3,     1,     3,     0,     1,     3,     3,     3,
-       3,     1
+       0,     2,     3,     1,     3,     0,     1,     1,     3,     3,
+       3,     3
 };
 
 
@@ -1316,48 +1316,36 @@ yyreduce:
   switch (yyn)
     {
   case 2:
-#line 20 "src/main.y"
+#line 22 "src/main.y"
                  {printf("Resultado : %d\n",yyvsp[-1]);}
 #line 1322 "src/y.tab.c"
     break;
 
   case 3:
-#line 21 "src/main.y"
+#line 23 "src/main.y"
         {yyval=yyvsp[0];}
 #line 1328 "src/y.tab.c"
     break;
 
   case 4:
-#line 25 "src/main.y"
+#line 27 "src/main.y"
                          {yyval=yyvsp[-1];}
 #line 1334 "src/y.tab.c"
     break;
 
   case 6:
-#line 30 "src/main.y"
+#line 32 "src/main.y"
        {yyval=yyvsp[0];}
 #line 1340 "src/y.tab.c"
     break;
 
   case 7:
-#line 31 "src/main.y"
-                   {yyval = yyvsp[-2] + yyvsp[0];}
+#line 33 "src/main.y"
+       {yyval=yyvsp[0];}
 #line 1346 "src/y.tab.c"
     break;
 
   case 8:
-#line 32 "src/main.y"
-                   {yyval = yyvsp[-2]*yyvsp[0];}
-#line 1352 "src/y.tab.c"
-    break;
-
-  case 9:
-#line 33 "src/main.y"
-                  {yyval = yyvsp[-2]/yyvsp[0];}
-#line 1358 "src/y.tab.c"
-    break;
-
-  case 10:
 #line 34 "src/main.y"
                    {if(yyvsp[0]==0) yyval=1;
                     else
@@ -1365,12 +1353,24 @@ yyreduce:
                        for(cont=1;cont<yyvsp[0];cont++) yyval=yyval*yyvsp[-2];
                     } 
                    }
+#line 1357 "src/y.tab.c"
+    break;
+
+  case 9:
+#line 40 "src/main.y"
+                   {yyval = yyvsp[-2]*yyvsp[0];}
+#line 1363 "src/y.tab.c"
+    break;
+
+  case 10:
+#line 41 "src/main.y"
+                  {yyval = yyvsp[-2]/yyvsp[0];}
 #line 1369 "src/y.tab.c"
     break;
 
   case 11:
-#line 40 "src/main.y"
-       {yyval=yyvsp[0];}
+#line 42 "src/main.y"
+                   {yyval = yyvsp[-2] + yyvsp[0];}
 #line 1375 "src/y.tab.c"
     break;
 
@@ -1607,7 +1607,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 43 "src/main.y"
+#line 45 "src/main.y"
 
 
 

@@ -11,8 +11,10 @@ unsigned char cont=0;
 %}
 
 %token SOMA EOL NUM MULT DIV EXPO ABREPAR FECHAPAR
-%left SOMA MULT DIV 
-%right ABREPAR FECHAPAR EXPO
+%left SOMA
+%left MULT DIV 
+%left EXPO
+%left ABREPAR FECHAPAR 
 
 %%
 
@@ -28,16 +30,16 @@ PAR:
 
 EXPR:
    NUM {$$=$1;}
-   |EXPR SOMA EXPR {$$ = $1 + $3;}
-   |EXPR MULT EXPR {$$ = $1*$3;}
-   |EXPR DIV EXPR {$$ = $1/$3;}
+   |PAR{$$=$1;}
    |EXPR EXPO EXPR {if($3==0) $$=1;
                     else
                     {
                        for(cont=1;cont<$3;cont++) $$=$$*$1;
                     } 
                    }
-   |PAR{$$=$1;}
+   |EXPR MULT EXPR {$$ = $1*$3;}
+   |EXPR DIV EXPR {$$ = $1/$3;}
+   |EXPR SOMA EXPR {$$ = $1 + $3;}   
    ;
  
 %%
