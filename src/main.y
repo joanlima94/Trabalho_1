@@ -31,15 +31,15 @@ PAR:
 EXPR:
    NUM {$$=$1;}
    |PAR{$$=$1;}
-   |EXPR EXPO EXPR {if($3==0) $$=1;
+   |EXPR EXPO EXPR {if($3==0) {$$=1;printf("MOV A, 1\n");} 
                     else
                     {
                        for(cont=1;cont<$3;cont++) $$=$$*$1;
                     } 
                    }
-   |EXPR MULT EXPR {$$ = $1*$3;}
-   |EXPR DIV EXPR {$$ = $1/$3;}
-   |EXPR SOMA EXPR {$$ = $1 + $3;}   
+   |EXPR MULT EXPR {$$ = $1*$3;printf("MOV A, %d\nMOV B, %d\nMULT B\n",$1,$3);}
+   |EXPR DIV EXPR {$$ = $1/$3;printf("MOV A, %d\nMOV B, %d\nDIV B\n",$1,$3);}
+   |EXPR SOMA EXPR {$$ = $1 + $3;printf("MOV A, %d\nMOV B, %d\nADD A,B\n",$1,$3);}   
    ;
  
 %%

@@ -1347,7 +1347,7 @@ yyreduce:
 
   case 8:
 #line 34 "src/main.y"
-                   {if(yyvsp[0]==0) yyval=1;
+                   {if(yyvsp[0]==0) {yyval=1;printf("MOV A, 1\n");} 
                     else
                     {
                        for(cont=1;cont<yyvsp[0];cont++) yyval=yyval*yyvsp[-2];
@@ -1358,19 +1358,19 @@ yyreduce:
 
   case 9:
 #line 40 "src/main.y"
-                   {yyval = yyvsp[-2]*yyvsp[0];}
+                   {yyval = yyvsp[-2]*yyvsp[0];printf("MOV A, %d\nMOV B, %d\nMULT B\n",yyvsp[-2],yyvsp[0]);}
 #line 1363 "src/y.tab.c"
     break;
 
   case 10:
 #line 41 "src/main.y"
-                  {yyval = yyvsp[-2]/yyvsp[0];}
+                  {yyval = yyvsp[-2]/yyvsp[0];printf("MOV A, %d\nMOV B, %d\nDIV B\n",yyvsp[-2],yyvsp[0]);}
 #line 1369 "src/y.tab.c"
     break;
 
   case 11:
 #line 42 "src/main.y"
-                   {yyval = yyvsp[-2] + yyvsp[0];}
+                   {yyval = yyvsp[-2] + yyvsp[0];printf("MOV A, %d\nMOV B, %d\nADD A,B\n",yyvsp[-2],yyvsp[0]);}
 #line 1375 "src/y.tab.c"
     break;
 
