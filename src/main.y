@@ -36,8 +36,8 @@ EXPR:
                     else{
                         for(cont=1;cont<$3;cont++) $$=$$*$1;
                     }
-                    printf("\n\tMOV C, 1\n%d",);
-                    printf("MOV C, 1\nMOV A, %d\nMOV B, %d\nMOV D, %d\nPOTENCIA_%d:\n	MUL B\n	INC C\n	CMP C,D\n	JNZ POTENCIA_%d\n", $1, $1,$3,f,f);
+                    printf("\n\tMOV C, 1\n%d",); //falta implementar
+
                    }
    |EXPR MULT EXPR {$$ = $1*$3;printf("\tMOV A, %d\n\tMOV B, %d\n\tMUL B\n",$1,$3);}
    |EXPR DIV EXPR {$$ = $1/$3;printf("\tMOV A, %d\n\tMOV B, %d\n\tDIV B\n",$1,$3);}
