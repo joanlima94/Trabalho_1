@@ -1,3 +1,10 @@
+/* 
+ * Trabalho 1 
+ * Disciplina: EA876 
+ * Professor: Tiago Tavares
+ * Alunos: Lukas Silva da Rosa   RA183167
+ *         Joan Lima Rios        RA175870
+ */
 
 %{
 #include <stdio.h>
@@ -19,7 +26,7 @@ unsigned char cont=0;
 %%
 
 CALC:
-   CALC EXPR EOL {printf("\nResultado: %d\n",$2);} 
+   CALC EXPR EOL {/*printf("\nResultado: %d\n",$2);*/} 
    | PAR{$$=$1;}
    ;
 
@@ -32,11 +39,14 @@ EXPR:
    NUM {$$=$1;}
    |PAR{$$=$1;}
    |EXPR EXPO EXPR {
+                    //Se expoente for 0, apenas mover valor 1 para registrador A
                     if($3==0) {$$=1;printf("\tMOV A, 1\n");} 
                     else{
                         for(cont=1;cont<$3;cont++) $$=$$*$1;
                     }
-                    printf("\n\tMOV C, 1\n%d",); //falta implementar
+                    //A refere-se a base, B refere-se ao exponente, C incrementador e D variável auxiliar
+                    printf("\n\tMOV A, %d\n\tMOV B, %d\n\tMOV C, 1\n\tMOV D, A\n\tJMP expo", $1, $3);
+                    printf("\nexpo:\n\tMUL D\n\tINC C\n\tCMP C, B\n\tJNZ expo\n\n");
 
                    }
    |EXPR MULT EXPR {$$ = $1*$3;printf("\tMOV A, %d\n\tMOV B, %d\n\tMUL B\n",$1,$3);}
@@ -46,16 +56,21 @@ EXPR:
  
 %%
 
-
 void yyerror(char *s) {
   printf("INVALIDO\n");
 }
 
 int main() {
-   //inicialização do cód. assembly (printando "Trabalho1 EA876")
-   printf("JMP start\nea876:\n\tDB \"Trabalho1 EA876\"\n\tDB 0\n\nstart:\n\tMOV C, ea876\n\tMOV D, 232\n\tCALL print\n\tHLT\n\n");
+   
+   //inicialização do cód. assembly printando "Trabalho1 EA876" e inicializando rotina da calculadora a.k.a. 'calc'
+   printf("\tJMP start\nea876:\n\tDB \"Trabalho1 EA876\"\n\tDB 0\n\nstart:\n\tMOV C, ea876\n\tMOV D, 232\n\tCALL print\n\tHLT\n\n");
    printf("print:\n\tPUSH A\n\tPUSH B\n\tMOV B, 0\n.loop:\n");
    printf("\tMOV A, [C]\n\tMOV [D], A\n\tINC C\n\tINC D\n\tCMP B, [C]\n\tJNZ .loop\n\n\tPOP B\n\tPOP B\n\tJMP calc\ncalc:\n");
+   
    yyparse();
+
+   //Zerando variáveis e terminando programa:
+   printf("\n\tPOP A\n\tPOP B\n\tPOP C\n\tPOP D\n\tRET");
+   
    return 0;
 }

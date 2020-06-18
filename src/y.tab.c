@@ -62,7 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 2 "src/main.y" /* yacc.c:339  */
+#line 9 "src/main.y" /* yacc.c:339  */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -442,8 +442,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    22,    22,    23,    27,    28,    32,    33,    34,    40,
-      41,    42
+       0,    29,    29,    30,    34,    35,    39,    40,    41,    52,
+      53,    54
 };
 #endif
 
@@ -1219,66 +1219,71 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 22 "src/main.y" /* yacc.c:1646  */
-    {printf("Resultado : %d\n",(yyvsp[-1]));}
+#line 29 "src/main.y" /* yacc.c:1646  */
+    {/*printf("\nResultado: %d\n",$2);*/}
 #line 1225 "src/y.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 23 "src/main.y" /* yacc.c:1646  */
+#line 30 "src/main.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[0]);}
 #line 1231 "src/y.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 27 "src/main.y" /* yacc.c:1646  */
+#line 34 "src/main.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[-1]);}
 #line 1237 "src/y.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 32 "src/main.y" /* yacc.c:1646  */
+#line 39 "src/main.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[0]);}
 #line 1243 "src/y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 33 "src/main.y" /* yacc.c:1646  */
+#line 40 "src/main.y" /* yacc.c:1646  */
     {(yyval)=(yyvsp[0]);}
 #line 1249 "src/y.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 34 "src/main.y" /* yacc.c:1646  */
+#line 41 "src/main.y" /* yacc.c:1646  */
     {
+                    //Se expoente for 0, apenas mover valor 1 para registrador A
                     if((yyvsp[0])==0) {(yyval)=1;printf("\tMOV A, 1\n");} 
                     else{
                         for(cont=1;cont<(yyvsp[0]);cont++) (yyval)=(yyval)*(yyvsp[-2]);
-                    } 
+                    }
+                    //A refere-se a base, B refere-se ao exponente, C incrementador e D variável auxiliar
+                    printf("\n\tMOV A, %d\n\tMOV B, %d\n\tMOV C, 1\n\tMOV D, A\n\tJMP expo", (yyvsp[-2]), (yyvsp[0]));
+                    printf("\nexpo:\n\tMUL D\n\tINC C\n\tCMP C, B\n\tJNZ expo\n\n");
+
                    }
-#line 1260 "src/y.tab.c" /* yacc.c:1646  */
+#line 1265 "src/y.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 40 "src/main.y" /* yacc.c:1646  */
+#line 52 "src/main.y" /* yacc.c:1646  */
     {(yyval) = (yyvsp[-2])*(yyvsp[0]);printf("\tMOV A, %d\n\tMOV B, %d\n\tMUL B\n",(yyvsp[-2]),(yyvsp[0]));}
-#line 1266 "src/y.tab.c" /* yacc.c:1646  */
+#line 1271 "src/y.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 41 "src/main.y" /* yacc.c:1646  */
+#line 53 "src/main.y" /* yacc.c:1646  */
     {(yyval) = (yyvsp[-2])/(yyvsp[0]);printf("\tMOV A, %d\n\tMOV B, %d\n\tDIV B\n",(yyvsp[-2]),(yyvsp[0]));}
-#line 1272 "src/y.tab.c" /* yacc.c:1646  */
+#line 1277 "src/y.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 42 "src/main.y" /* yacc.c:1646  */
-    {(yyval) = (yyvsp[-2]) + (yyvsp[0]);printf("\tMOV A, %d\n\tMOV B, %d\n\tADD A,B\n",(yyvsp[-2]),(yyvsp[0]));}
-#line 1278 "src/y.tab.c" /* yacc.c:1646  */
+#line 54 "src/main.y" /* yacc.c:1646  */
+    {(yyval) = (yyvsp[-2]) + (yyvsp[0]);printf("\tMOV A, %d\n\tMOV B, %d\n\tADD A, B\n",(yyvsp[-2]),(yyvsp[0]));}
+#line 1283 "src/y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1282 "src/y.tab.c" /* yacc.c:1646  */
+#line 1287 "src/y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1506,8 +1511,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 45 "src/main.y" /* yacc.c:1906  */
-
+#line 57 "src/main.y" /* yacc.c:1906  */
 
 
 void yyerror(char *s) {
@@ -1515,10 +1519,16 @@ void yyerror(char *s) {
 }
 
 int main() {
-   //inicialização do cód. assembly (printando "Trabalho1 EA876")
-   printf("JMP start\nea876:\n\tDB \"Trabalho1 EA876\"\n\tDB 0\n\nstart:\n\tMOV C, ea876\n\tMOV D, 232\n\tCALL print\n\tHLT\n\n");
+   
+   //inicialização do cód. assembly printando "Trabalho1 EA876" e inicializando rotina da calculadora a.k.a. 'calc'
+   printf("\tJMP start\nea876:\n\tDB \"Trabalho1 EA876\"\n\tDB 0\n\nstart:\n\tMOV C, ea876\n\tMOV D, 232\n\tCALL print\n\tHLT\n\n");
    printf("print:\n\tPUSH A\n\tPUSH B\n\tMOV B, 0\n.loop:\n");
    printf("\tMOV A, [C]\n\tMOV [D], A\n\tINC C\n\tINC D\n\tCMP B, [C]\n\tJNZ .loop\n\n\tPOP B\n\tPOP B\n\tJMP calc\ncalc:\n");
+   
    yyparse();
+
+   //Zerando variáveis e terminando programa:
+   printf("\n\tPOP A\n\tPOP B\n\tPOP C\n\tPOP D\n\tRET");
+   
    return 0;
 }
