@@ -1257,7 +1257,7 @@ yyreduce:
                         for(cont=1;cont<(yyvsp[0]);cont++) (yyval)=(yyval)*(yyvsp[-2]);
                     }
                     //A refere-se a base, B refere-se ao exponente, C incrementador e D variável auxiliar
-                    printf("\n\tMOV A, %d\n\tMOV B, %d\n\tMOV C, 1\n\tMOV D, A\n\tJMP expo", (yyvsp[-2]), (yyvsp[0]));
+                    printf("\n;exponenciação\n\tMOV A, %d\n\tMOV B, %d\n\tMOV C, 1\n\tMOV D, A\n\tJMP expo", (yyvsp[-2]), (yyvsp[0]));
                     printf("\nexpo:\n\tMUL D\n\tINC C\n\tCMP C, B\n\tJNZ expo\n\n");
 
                    }
@@ -1266,19 +1266,19 @@ yyreduce:
 
   case 9:
 #line 52 "src/main.y" /* yacc.c:1646  */
-    {(yyval) = (yyvsp[-2])*(yyvsp[0]);printf("\tMOV A, %d\n\tMOV B, %d\n\tMUL B\n",(yyvsp[-2]),(yyvsp[0]));}
+    {(yyval) = (yyvsp[-2])*(yyvsp[0]);printf("\n;Multiplicação\n\tMOV A, %d\n\tMOV B, %d\n\tMUL B\n",(yyvsp[-2]),(yyvsp[0]));}
 #line 1271 "src/y.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
 #line 53 "src/main.y" /* yacc.c:1646  */
-    {(yyval) = (yyvsp[-2])/(yyvsp[0]);printf("\tMOV A, %d\n\tMOV B, %d\n\tDIV B\n",(yyvsp[-2]),(yyvsp[0]));}
+    {(yyval) = (yyvsp[-2])/(yyvsp[0]);printf("\n;Divisão\n\tMOV A, %d\n\tMOV B, %d\n\tDIV B\n",(yyvsp[-2]),(yyvsp[0]));}
 #line 1277 "src/y.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
 #line 54 "src/main.y" /* yacc.c:1646  */
-    {(yyval) = (yyvsp[-2]) + (yyvsp[0]);printf("\tMOV A, %d\n\tMOV B, %d\n\tADD A, B\n",(yyvsp[-2]),(yyvsp[0]));}
+    {(yyval) = (yyvsp[-2]) + (yyvsp[0]);printf("\n;Soma\n\tMOV A, %d\n\tMOV B, %d\n\tADD A, B\n",(yyvsp[-2]),(yyvsp[0]));}
 #line 1283 "src/y.tab.c" /* yacc.c:1646  */
     break;
 

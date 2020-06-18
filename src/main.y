@@ -45,13 +45,13 @@ EXPR:
                         for(cont=1;cont<$3;cont++) $$=$$*$1;
                     }
                     //A refere-se a base, B refere-se ao exponente, C incrementador e D variável auxiliar
-                    printf("\n\tMOV A, %d\n\tMOV B, %d\n\tMOV C, 1\n\tMOV D, A\n\tJMP expo", $1, $3);
+                    printf("\n;exponenciação\n\tMOV A, %d\n\tMOV B, %d\n\tMOV C, 1\n\tMOV D, A\n\tJMP expo", $1, $3);
                     printf("\nexpo:\n\tMUL D\n\tINC C\n\tCMP C, B\n\tJNZ expo\n\n");
 
                    }
-   |EXPR MULT EXPR {$$ = $1*$3;printf("\tMOV A, %d\n\tMOV B, %d\n\tMUL B\n",$1,$3);}
-   |EXPR DIV EXPR {$$ = $1/$3;printf("\tMOV A, %d\n\tMOV B, %d\n\tDIV B\n",$1,$3);}
-   |EXPR SOMA EXPR {$$ = $1 + $3;printf("\tMOV A, %d\n\tMOV B, %d\n\tADD A, B\n",$1,$3);}   
+   |EXPR MULT EXPR {$$ = $1*$3;printf("\n;Multiplicação\n\tMOV A, %d\n\tMOV B, %d\n\tMUL B\n",$1,$3);}
+   |EXPR DIV EXPR {$$ = $1/$3;printf("\n;Divisão\n\tMOV A, %d\n\tMOV B, %d\n\tDIV B\n",$1,$3);}
+   |EXPR SOMA EXPR {$$ = $1 + $3;printf("\n;Soma\n\tMOV A, %d\n\tMOV B, %d\n\tADD A, B\n",$1,$3);}   
    ;
  
 %%
