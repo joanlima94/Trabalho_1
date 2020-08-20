@@ -69,8 +69,5 @@ int main() {
    
    yyparse();
 
-   //Zerando variáveis e terminando programa:
-   printf("\n\tPOP A\n\tPOP B\n\tPOP C\n\tPOP D\n\tRET");
-   
    return 0;
 }
